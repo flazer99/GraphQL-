@@ -12,8 +12,8 @@ class Mesh:
 @strawberry.type
 class Query:
     @strawberry.field
-    def mesh(self, info) -> typing.List[Mesh]:
-        return list(map(lambda x: Mesh(value = x['value'], url = x['url']), storage.data_store))
+    def mesh(self) -> typing.List[Mesh]:
+        return [Mesh(**kwargs) for kwargs in storage.data_store]
 
 @strawberry.type
 class Mutation:
